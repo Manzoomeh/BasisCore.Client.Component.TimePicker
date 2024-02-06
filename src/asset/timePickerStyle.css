@@ -1,0 +1,21 @@
+.timepicker-ui-ok-btn {
+	background-color: #004B85 ;
+	color: #fff ;
+  }
+  .timepicker-ui-wrapper-btn,.timepicker-ui-footer {
+	direction: rtl;
+  }
+  .timepicker-ui-hour:hover, .timepicker-ui-hour.active, .timepicker-ui-minutes:hover, .timepicker-ui-minutes.active, .timepicker-ui-hour.mobile:hover, .timepicker-ui-hour.mobile.active, .timepicker-ui-minutes.mobile:hover, .timepicker-ui-minutes.mobile.active {
+	color: #004B85;
+	background-color: rgba(0, 75, 133, 0.1);
+  }
+  .timepicker-ui-wrapper {
+	padding: 0 25px !important;
+  }
+  .timepicker-ui-header {
+	padding-top: 0 !important;
+	padding-bottom: 1px !important;
+  }
+  .timepicker-ui-circle-hand{
+	background-color: #004B85 ;
+  }

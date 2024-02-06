@@ -1,0 +1,38 @@
+<title>hellllllllll</title>
+
+<script src="https://cdn.basiscore.net/_js/basiscore-2.4.10.min.js"></script>
+<script src="https://cdn.basiscore.net/_js/alasql.min.js"></script>
+<style>
+  @font-face {
+    font-family: 'IRANSansWeb';
+    src: url("https://cdn.basiscore.net/_fonts/IRANSansWeb(FaNum).eot");
+    src: url("https://cdn.basiscore.net/_fonts/IRANSansWeb(FaNum).eot") format("embedded-opentype"), 
+    url("https://cdn.basiscore.net/_fonts/IRANSansWeb(FaNum).woff") format("woff"), 
+    url("https://cdn.basiscore.net/_fonts/IRANSansWeb(FaNum).ttf") format("truetype")
+}
+.timepicker-ui-ok-btn ,.timepicker-ui-cancel-btn{
+  font-family: 'IRANSansWeb';
+}
+</style>
+<basis
+  core="component.bc.timepicker"
+  run="atclient"
+  options="mySetting1"
+></basis>
+
+<script>
+  const host = {
+    repositories: {
+      "bc.timepicker": "../basiscore.timepicker.js",
+    },
+  };
+
+  var mySetting1 = {
+  okLabel: "تایید",
+  cancelLabel: "انصراف" ,
+  amLabel : "ق.ظ",
+  pmLabel : "ب.ظ",
+  clockType : "24h",
+  
+  }
+</script>
