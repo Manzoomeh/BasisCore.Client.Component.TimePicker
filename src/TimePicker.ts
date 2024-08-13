@@ -46,11 +46,15 @@ public createTimePicker(){
   const input2 = document.createElement("input")
   input.appendChild(input2)
   input.setAttribute("data-bc-timepicker","")
-  const datePickerOptions : OptionTypes = {okLabel :this.options.okLabel,
-    cancelLabel:this.options.cancelLabel,
-    amLabel:this.options.amLabel,
-    pmLabel:this.options.pmLabel,
-    clockType:this.options.clockType ,timeLabel : "",delayHandler:10 ,   switchToMinutesAfterSelectHour : true};
+  const datePickerOptions : OptionTypes = {
+    okLabel :this.options.okLabel ? this.options.okLabel : "تایید",
+    cancelLabel:this.options.cancelLabel ? this.options.cancelLabel : "انصراف",
+    amLabel:this.options.amLabel ? this.options.amLabel : "ق.ظ",
+    pmLabel:this.options.pmLabel ? this.options.pmLabel : "ب.ظ",
+    clockType:this.options.clockType ? this.options.clockType : "24h" ,
+    timeLabel : "",
+    delayHandler:10 ,   
+    switchToMinutesAfterSelectHour : true};
    const newTimepicker = new TimepickerUI(input, datePickerOptions);
    this.container.appendChild(input)
    input2.addEventListener("click",timeElement => {     

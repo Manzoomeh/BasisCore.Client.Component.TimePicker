@@ -16,6 +16,13 @@
 	padding-top: 0 !important;
 	padding-bottom: 1px !important;
   }
-  .timepicker-ui-circle-hand{
-	background-color: #004B85 ;
+
+  .timepicker-ui-clock-hand,.timepicker-ui-dot,.timepicker-ui-circle-hand{
+    background-color: #004B85 !important;
+  }
+  .timepicker-ui-cancel-btn,.timepicker-ui-am.active{
+    color: #004B85 !important; ;
+  }
+  .timepicker-ui-am.active{
+    background-color: rgba(0, 75, 133, 0.13) !important;
   }
