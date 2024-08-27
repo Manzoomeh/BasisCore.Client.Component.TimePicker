@@ -1,17 +1,18 @@
 import IComponentManager from "../src/basiscore/IComponentManager";
 import ISource from "../src/basiscore/ISource";
 import IUserDefineComponent from "../src/basiscore/IUserDefineComponent";
+import { IPartValue } from "./basiscore/ISchemaBaseComponent";
 // import IBasisPanelOptions from "./src/basispanel/IBasisPanelOptions";
 
 export default abstract class BasisPanelChildComponent
-  implements IComponentManager
-{
+  implements IComponentManager {
   protected readonly owner: IUserDefineComponent;
   public readonly container: Element;
   // protected readonly options: IBasisPanelOptions;
-
+  public input: HTMLInputElement
   constructor(owner: IUserDefineComponent, layout: string, dataAttr: string) {
     this.owner = owner;
+    this.input = document.createElement('input')
     this.container = document.createElement("div");
     this.container.setAttribute(dataAttr, "");
     this.owner.setContent(this.container);
@@ -28,4 +29,46 @@ export default abstract class BasisPanelChildComponent
   }
   public abstract initializeAsync(): void | Promise<void>;
   public abstract runAsync(source?: ISource): any | Promise<any>;
+
+  setValues(values: IPartValue[]) {
+    console.log('values', values)
+    if (values && values.length == 1) {
+      this.input.value = values[0].value;
+    }
+  }
+
+  getValuesForValidate() {
+    return this.input.value
+  }
+
+  getAddedValuesAsync(): IPartValue[] {
+    let retVal: IPartValue[] = null;
+    const value = this.input.value
+    if (value?.length > 0) {
+      retVal = new Array<IPartValue>();
+      retVal.push({ value: value });
+    }
+    return retVal;
+  }
+
+  getEditedValuesAsync(baseValues: IPartValue[]): IPartValue[] {
+    let retVal: IPartValue[] = null;
+    const baseValue = baseValues[0].value;
+    const baseId = baseValues[0].id;
+    const value = this.input.value;
+    if (value?.length > 0 && value != baseValue) {
+      retVal = new Array<IPartValue>();
+      retVal.push({ id: baseId, value: value });
+    }
+    return retVal;
+  }
+
+  getDeletedValuesAsync(baseValues: IPartValue[]): IPartValue[] {
+    let retVal: IPartValue[] = null;
+    const value = this.input.value
+    if (value?.length == 0) {
+      retVal = baseValues;
+    }
+    return retVal;
+  }
 }
