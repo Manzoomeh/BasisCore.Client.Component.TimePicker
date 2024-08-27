@@ -42,6 +42,7 @@ export  default abstract class TimePicker extends BasisPanelChildComponent {
     this.createTimePicker()
   }
 public createTimePicker(){
+  console.log("time")
   const input = document.createElement("div")
   const input2 = document.createElement("input")
   input.appendChild(input2)

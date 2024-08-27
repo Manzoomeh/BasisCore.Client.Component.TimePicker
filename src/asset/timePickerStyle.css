@@ -20,9 +20,9 @@
   .timepicker-ui-clock-hand,.timepicker-ui-dot,.timepicker-ui-circle-hand{
     background-color: #004B85 !important;
   }
-  .timepicker-ui-cancel-btn,.timepicker-ui-am.active{
+  .timepicker-ui-cancel-btn,.timepicker-ui-am.active,.timepicker-ui-pm.active,.timepicker-ui-am:hover{
     color: #004B85 !important; ;
   }
-  .timepicker-ui-am.active{
+  .timepicker-ui-am.active,.timepicker-ui-pm.active,.timepicker-ui-am:hover{
     background-color: rgba(0, 75, 133, 0.13) !important;
   }
