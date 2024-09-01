@@ -9,7 +9,7 @@ crypto.createHash = algorithm => crypto_orig_createHash(algorithm == "md4" ? "sh
 
 module.exports = (env, options) => {
   return {
-   
+
     entry: {
 
       timepicker: {
@@ -28,7 +28,7 @@ module.exports = (env, options) => {
     devServer: {
       static: path.resolve(__dirname, "wwwroot"),
       onBeforeSetupMiddleware: function (server) {
-        
+
       },
       open: true,
       port: 3000,
@@ -59,7 +59,7 @@ module.exports = (env, options) => {
         },
         {
           test: /\.css$/,
-          use: ["style-loader","css-loader"],
+          use: ["style-loader", "css-loader"],
         }
       ],
     },
