@@ -4,15 +4,14 @@ import IUserDefineComponent from "../src/basiscore/IUserDefineComponent";
 import { IPartValue } from "./basiscore/ISchemaBaseComponent";
 // import IBasisPanelOptions from "./src/basispanel/IBasisPanelOptions";
 
-export default abstract class BasisPanelChildComponent
-  implements IComponentManager {
+export default abstract class BasisPanelChildComponent implements IComponentManager {
   protected readonly owner: IUserDefineComponent;
   public readonly container: Element;
   // protected readonly options: IBasisPanelOptions;
-  public input: HTMLInputElement
+  public input: HTMLInputElement;
   constructor(owner: IUserDefineComponent, layout: string, dataAttr: string) {
     this.owner = owner;
-    this.input = document.createElement('input')
+    this.input = document.createElement("input");
     this.container = document.createElement("div");
     this.container.setAttribute(dataAttr, "");
     this.owner.setContent(this.container);
@@ -31,22 +30,23 @@ export default abstract class BasisPanelChildComponent
   public abstract runAsync(source?: ISource): any | Promise<any>;
 
   setValues(values: IPartValue[]) {
-    console.log('values', values)
+    console.log("valuessdds", values);
     if (values && values.length == 1) {
       this.input.value = values[0].value;
     }
   }
 
   getValuesForValidate() {
-    return this.input.value
+    return this.input.value;
   }
 
   getAddedValuesAsync(): IPartValue[] {
     let retVal: IPartValue[] = null;
-    const value = this.input.value
+    const value = this.input.value;
+    console.log("vssss", value);
     if (value?.length > 0) {
       retVal = new Array<IPartValue>();
-      retVal.push({ value: value });
+      retVal.push({ value: {time: value, timeid : this.convertToMinutes(value)} });
     }
     return retVal;
   }
@@ -58,17 +58,48 @@ export default abstract class BasisPanelChildComponent
     const value = this.input.value;
     if (value?.length > 0 && value != baseValue) {
       retVal = new Array<IPartValue>();
-      retVal.push({ id: baseId, value: value });
+      retVal.push({
+        id: baseId,
+        value: { time: value, timeid: this.convertToMinutes(value) },
+      });
     }
     return retVal;
   }
 
   getDeletedValuesAsync(baseValues: IPartValue[]): IPartValue[] {
     let retVal: IPartValue[] = null;
-    const value = this.input.value
+    const value = this.input.value;
     if (value?.length == 0) {
       retVal = baseValues;
     }
     return retVal;
+  }
+  convertToMinutes(time: string): number {
+    const is12HourFormat = /AM|PM/i.test(time);
+
+    let hours: number, minutes: number;
+
+    if (is12HourFormat) {
+      // Parse 12-hour format
+      const [timePart, meridiem] = time.split(" ");
+      const [hourStr, minuteStr] = timePart.split(":");
+      hours = parseInt(hourStr, 10);
+      minutes = parseInt(minuteStr, 10);
+
+      // Convert 12-hour to 24-hour format
+      if (meridiem.toUpperCase() === "PM" && hours !== 12) {
+        hours += 12;
+      } else if (meridiem.toUpperCase() === "AM" && hours === 12) {
+        hours = 0;
+      }
+    } else {
+      // Parse 24-hour format
+      const [hourStr, minuteStr] = time.split(":");
+      hours = parseInt(hourStr, 10);
+      minutes = parseInt(minuteStr, 10);
+    }
+
+    // Return the total minutes since midnight
+    return hours * 60 + minutes;
   }
 }
