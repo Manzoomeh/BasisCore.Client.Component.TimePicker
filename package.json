@@ -33,6 +33,7 @@
     "ws": "^7.4.6"
   },
   "dependencies": {
+    "Client": "file:",
     "timepicker-ui": "^2.6.1"
   }
 }
