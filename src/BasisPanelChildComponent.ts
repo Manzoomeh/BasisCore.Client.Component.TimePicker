@@ -30,9 +30,8 @@ export default abstract class BasisPanelChildComponent implements IComponentMana
   public abstract runAsync(source?: ISource): any | Promise<any>;
 
   setValues(values: IPartValue[]) {
-    console.log("valuessdds", values);
     if (values && values.length == 1) {
-      this.input.value = values[0].value;
+      this.input.value = values[0].value?.time;
     }
   }
 
@@ -43,7 +42,6 @@ export default abstract class BasisPanelChildComponent implements IComponentMana
   getAddedValuesAsync(): IPartValue[] {
     let retVal: IPartValue[] = null;
     const value = this.input.value;
-    console.log("vssss", value);
     if (value?.length > 0) {
       retVal = new Array<IPartValue>();
       retVal.push({ value: {time: value, timeid : this.convertToMinutes(value)} });
