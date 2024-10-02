@@ -42,7 +42,6 @@ export default abstract class BasisPanelChildComponent implements IComponentMana
   getAddedValuesAsync(): IPartValue[] {
     let retVal: IPartValue[] = null;
     const value = this.input.value;
-    console.log("vssss", value);
     if (value?.length > 0) {
       retVal = new Array<IPartValue>();
       retVal.push({ value: {time: value, timeid : this.convertToMinutes(value)} });
