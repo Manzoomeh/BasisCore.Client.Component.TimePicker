@@ -30,9 +30,8 @@ export default abstract class BasisPanelChildComponent implements IComponentMana
   public abstract runAsync(source?: ISource): any | Promise<any>;
 
   setValues(values: IPartValue[]) {
-    console.log("valuessdds", values);
     if (values && values.length == 1) {
-      this.input.value = values[0].value;
+      this.input.value = values[0].value?.time;
     }
   }
 
